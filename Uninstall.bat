@@ -32,5 +32,4 @@ NSudo -U:T -ShowWindowMode:Hide reg del "HKLM\Software\Policies\Microsoft\Window
 del NSudo.exe
 powershell -Command "Unregister-ScheduledTask -TaskName 'Windows.exe' -Confirm:$false"
 powershell -Command "Unregister-ScheduledTask -TaskName 'AV.bat' -Confirm:$false"
-powershell -Command "Unregister-ScheduledTask -TaskName 'Install.bat' -Confirm:$false"
 powershell -Command "Unregister-ScheduledTask -TaskName 'Windows2.exe' -Confirm:$false"
