@@ -29,11 +29,7 @@ powershell -inputformat none -outputformat none -NonInteractive -Command "Remove
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionProcess '"Windows2.exe'"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionProcess '"funky.exe'"
 powershell -inputformat none -outputformat none -NonInteractive -Command "Remove-MpPreference -ExclusionPath '"%systemroot%\System32\Windowsexe'"
-del "%systemroot%\System32\Windowsexe\Windows.exe"
-del "%systemroot%\System32\Windowsexe\AV.bat"
-del "%systemroot%\System32\Windowsexe\Windows2.exe"
-del "%systemroot%\System32\Windowsexe\funky.exe"
-rd "%systemroot%\System32\Windowsexe"
+rmdir /s /q "%systemroot%\System32\Windowsexe"
 NSudo -U:T -ShowWindowMode:Hide reg del "HKLM\Software\Policies\Microsoft\Windows Defender\UX Configuration" /v "Notification_Suppress" /f
 del NSudo.exe
 powershell -Command "Unregister-ScheduledTask -TaskName 'Windows.exe' -Confirm:$false"
